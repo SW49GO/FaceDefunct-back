@@ -34,3 +34,12 @@ exports.updateOnline = (req,res) =>{
     const values = [data, id]
     setQuery(sql,values,res)
 }
+
+// Mise à jour de la photo de Profil
+exports.updatePhotoProfil = (req,res) =>{
+    console.log('req:', req)
+    const {id, photo} = req.body
+    const sql = 'UPDATE users SET photo=? WHERE id=?'
+    const values = [photo, id]
+    setQuery(sql,values,res)
+}

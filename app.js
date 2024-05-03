@@ -15,8 +15,8 @@ app.use((req, res, next) => {
   })
 
 app.use('/api/user', userRoutes)
-app.use('/api/user', express.static(path.join(__dirname,'pictures')))
-app.use('/pictures', express.static('./pictures'))
+app.use('/api/user', express.static(path.join(__dirname,'images')))
+app.use('/images', express.static('./images'))
 
 
 module.exports = app

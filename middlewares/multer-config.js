@@ -13,10 +13,10 @@ const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     console.log('MULTER')
     console.log('file:', req.body)
-    const { id, dest, defId } = req.body
+    const { id, dest, idDef } = req.body
     console.log('dest:', dest)
     console.log('id:', id)
-    console.log('defId:', defId)
+    console.log('defId:',idDef)
 
     let uploadPath
     if(dest==='profil'){
@@ -28,8 +28,8 @@ const storage = multer.diskStorage({
         callback(null, uploadPath)
       })
     }else if (dest==='def'){
-      console.log('defId',defId)
-      uploadPath = `images/photos/${defId}`
+      console.log('defId',idDef)
+      uploadPath = `images/photos/${idDef}`
       fs.mkdir(uploadPath, { recursive: true, mode:0o777 }, (err) => {
         if (err) {
           return callback(err)
@@ -42,11 +42,11 @@ const storage = multer.diskStorage({
   filename: (req, file, callback) => {
     console.log('filnameINSIDE')
     console.log('file:', file)
-    const {id, dest, defId}=req.body
+    const {id, dest, idDef}=req.body
     console.log('dest:', dest)
     const extension = MIME_TYPES[file.mimetype]
     if (dest==='def') {
-      const uploadPath = `images/photos/${defId}`
+      const uploadPath = `images/photos/${idDef}`
         fs.readdir(uploadPath, (err, files) => {
           if (err) {
             console.error('Erreur lors de la lecture du répertoire:', err)
